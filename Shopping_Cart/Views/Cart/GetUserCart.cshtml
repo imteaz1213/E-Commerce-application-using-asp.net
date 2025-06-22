@@ -30,7 +30,14 @@
 					<td>@item.Book.Price X @item.Quantity</td>
 					<td>@(item.Book.Price * item.Quantity)</td>
 					<td>
-						<a class="btn btn-info" href="/Cart/AddItem?bookId=@item.BookId&&redirect=1">+</a>
+						@if(item.Quantity < item.Book.Stock.Quantity){
+							<a class="btn btn-info" href="/Cart/AddItem?bookId=@item.BookId&&redirect=1">+</a>
+						}
+						else
+						{
+							<span style="border : 1px solid;padding:5px 8px;color : red;border: 5px;">Out of Stock</span>
+						}
+
 						<a class="btn btn-info" href="/Cart/RemoveItem?bookId=@item.BookId">-</a>
 					</td>
 					

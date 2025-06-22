@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@using Shopping_Cart.Constants
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -28,6 +29,12 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Home" asp-action="Privacy" >Privacy</a>
                     </li>
+                    @if (User.IsInRole(Roles.Admin.ToString()))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/AdminOperations/Dashboard">Dashboard</a>                      
+                        </li>
+                    }
                 </ul>
                 <partial name="_LoginPartial"/>
             </div>
@@ -36,6 +43,7 @@
   
 
     <div class="container">
+        <partial name="_Notification" />
         @RenderBody()
     </div>
 </body>
